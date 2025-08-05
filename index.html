@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Você me ama?</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="imgs/favicon.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background-image: url('imgs/sanriogames.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #e94d58;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .hello-kitty {
+      width: 200px;
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .resposta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    #btn-sim {
+      background: #e94d58;
+      color: white;
+    }
+
+    #btn-nao {
+      background: white;
+      color: #e94d58;
+      border: 2px solid #e94d58;
+    }
+
+    #btn-nao:hover {
+      transform: scale(1.1);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      align-items: center;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 30px;
+      height: 100px;
+      width: 80%;
+      max-width: 350px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      .hello-kitty {
+        width: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Você me ama?</h1>
+
+    <img src="imgs/hellokitty.jpeg" alt="Hello Kitty casal fofo com coração" class="hello-kitty" />
+
+    <div class="resposta">
+      <button id="btn-sim">Sim</button>
+      <button id="btn-nao">Não</button>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <p>Eu sabia e adivinha, bocó? <br> Eu também! ❤️</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+  const modal = document.getElementById("modal");
+  const btnSim = document.getElementById("btn-sim");
+  const btnNao = document.getElementById("btn-nao");
+
+  btnSim.onclick = () => {
+    modal.style.display = "flex";
+  };
+
+  function moverBotao() {
+    const maxX = window.innerWidth - btnNao.offsetWidth;
+    const maxY = window.innerHeight - btnNao.offsetHeight;
+
+    const randX = Math.floor(Math.random() * maxX);
+    const randY = Math.floor(Math.random() * maxY);
+
+    btnNao.style.position = "absolute";
+    btnNao.style.left = randX + "px";
+    btnNao.style.top = randY + "px";
+  }
+
+  btnNao.addEventListener("mouseover", moverBotao);
+  btnNao.addEventListener("touchstart", moverBotao); // Suporte pra mobile
+
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
